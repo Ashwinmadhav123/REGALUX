@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REGALUX Directory | Rental Suits and Costumes</title>
+<style>
+:root{
+  --bg:#0a0d14;--panel:#111724;--panel2:#161e2e;--line:#243049;--text:#e6ebf5;--muted:#8a96ad;
+  --accent:#4de3c1;--accent2:#7c8cff;--warn:#ffb84d;color-scheme:dark;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;background-position:-1px -1px}
+body::after{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,transparent 0%,var(--bg) 75%);z-index:-1;pointer-events:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:16px;padding:12px 24px;
+  background:rgba(10,13,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.18em;color:var(--text);text-decoration:none;font-size:18px}
+.logo span{color:var(--accent)}
+.status{margin-left:8px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}
+.spacer{flex:1}
+.cartbtn{background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit;font-size:14px;display:flex;gap:8px;align-items:center}
+.cartbtn:hover{border-color:var(--accent)}
+.badge{background:var(--accent);color:#04120e;border-radius:99px;padding:0 8px;font-weight:700;font-size:12px;min-width:22px;text-align:center}
+main{max-width:1180px;margin:0 auto;padding:40px 24px 80px}
+.hero h1{font-size:clamp(28px,5vw,46px);margin:0 0 8px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);max-width:620px;margin:0 0 22px}
+.tag{display:inline-block;font-size:11px;color:var(--accent);border:1px solid var(--line);padding:2px 8px;border-radius:4px;margin-bottom:14px}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 26px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 16px}
+.stat b{display:block;font-size:20px;color:var(--accent)}
+.stat small{color:var(--muted);font-size:11px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.search{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:11px 14px;border-radius:8px;font:inherit;font-size:14px}
+.search:focus,.date:focus{outline:none;border-color:var(--accent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{background:var(--panel);color:var(--muted);border:1px solid var(--line);padding:6px 13px;border-radius:99px;cursor:pointer;font-size:13px}
+.chip:hover{color:var(--text)}
+.chip.on{background:rgba(77,227,193,.12);color:var(--accent);border-color:var(--accent)}
+.sec{display:flex;align-items:center;gap:10px;margin:30px 0 14px;font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;position:relative;transition:.2s}
+.card:hover{border-color:var(--accent2);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.top{display:flex;align-items:center;gap:12px}
+.icon{width:52px;height:52px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font-size:26px;text-decoration:none;transition:.2s;flex:none}
+.icon:hover{border-color:var(--accent);box-shadow:0 0 16px rgba(77,227,193,.35)}
+.card h3{margin:0;font-size:16px}
+.card h3 a{color:var(--text);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.meta{font-size:11px;color:var(--muted)}
+.desc{margin:0;font-size:13px;color:var(--muted);flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price{font-weight:700;color:var(--warn);font-size:15px}
+.price small{color:var(--muted);font-weight:400}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.qty button{background:var(--panel2);border:0;color:var(--text);width:30px;height:30px;cursor:pointer;font-size:16px}
+.qty button:hover{background:var(--line)}
+.qty span{min-width:30px;text-align:center;font-size:14px}
+.add{background:var(--accent);color:#04120e;border:0;border-radius:8px;padding:9px;font-weight:700;cursor:pointer;font:inherit;font-weight:700;font-size:13px}
+.add:hover{filter:brightness(1.1)}
+.visit{font-size:12px;color:var(--accent2);text-decoration:none}
+.visit:hover{text-decoration:underline}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.25s;z-index:30}
+.overlay.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--panel);border-left:1px solid var(--line);z-index:40;transform:translateX(100%);transition:.3s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+aside.on{transform:none}
+.ah{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.ah h2{margin:0;font-size:16px}
+.x{background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+.items{flex:1;overflow:auto;padding:12px 20px}
+.it{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line)}
+.it .ic{font-size:24px}
+.it .nm{flex:1;font-size:14px}
+.it .nm small{display:block;color:var(--muted)}
+.foot{padding:16px 20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.fr{display:flex;justify-content:space-between;font-size:14px;gap:10px;align-items:center}
+.fr b{color:var(--accent)}
+.date{background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:7px 10px;border-radius:8px;font:inherit;font-size:13px;color-scheme:dark;max-width:170px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--panel2);border:1px solid var(--accent);padding:10px 18px;border-radius:8px;z-index:60;font-size:13px;transition:.3s}
+.toast.on{transform:translate(-50%,0)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+@media(max-width:600px){header{padding:10px 14px}.status{display:none}main{padding:28px 14px 60px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo mono" href="#" id="home">REGA<span>LUX</span></a>
+  <div class="status mono"><span class="dot"></span>directory.online</div>
+  <div class="spacer"></div>
+  <button class="cartbtn" id="openCart" aria-label="Open cart">🛒 Cart <span class="badge" id="count">0</span></button>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="tag mono">&gt; regalux.directory --rental --domain-index</span>
+    <h1>Rent the look.<br><em>Skip the closet.</em></h1>
+    <p>A domain-indexed directory of REGALUX rental suits and costumes. Pick a category, tap an icon to open its REGALUX page, or book straight from here.</p>
+    <div class="stats mono">
+      <div class="stat"><b id="sItems">0</b><small>listings</small></div>
+      <div class="stat"><b id="sDomains">0</b><small>domains</small></div>
+      <div class="stat"><b id="sCart">0</b><small>units in cart</small></div>
+    </div>
+  </section>
+
+  <div class="tools"><input class="search mono" id="q" type="search" placeholder="search suits, costumes, events..." aria-label="Search"></div>
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+</main>
+
+<div class="overlay" id="ov"></div>
+<aside id="cart" aria-label="Cart">
+  <div class="ah"><h2 class="mono">&gt; booking_cart</h2><button class="x" id="closeCart" aria-label="Close">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="foot">
+    <div class="fr"><label for="dt">Event date</label><input class="date mono" type="date" id="dt"></div>
+    <div class="fr"><label for="days">Rental days</label>
+      <div class="qty"><button id="dm" aria-label="Fewer days">−</button><span id="days" class="mono">1</span><button id="dp" aria-label="More days">+</button></div></div>
+    <div class="fr"><span>Total units</span><b class="mono" id="tu">0</b></div>
+    <div class="fr"><span>Estimated total</span><b class="mono" id="tt">$0</b></div>
+    <button class="add" id="book">Confirm booking</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+<footer class="mono">REGALUX directory · v1.0 · links open on the REGALUX site</footer>
+
+<script>
+// Set this to the real REGALUX website address.
+const BASE = "https://regalux.com";
+
+const DOMAINS = [
+  {id:"suits", name:"Suits and Formal", icon:"🕴️"},
+  {id:"wedding", name:"Wedding", icon:"💍"},
+  {id:"costumes", name:"Costumes", icon:"🎭"},
+  {id:"party", name:"Party and Theme", icon:"🎉"},
+  {id:"accessories", name:"Accessories", icon:"🎩"}
+];
+const ITEMS = [
+  {id:1,d:"suits",n:"Classic Black Tuxedo",i:"🤵",p:45,t:"Slim fit · sizes 36-48",s:"tuxedo-black",x:"Timeless black tux for galas, awards and formal dinners."},
+  {id:2,d:"suits",n:"Navy Business Suit",i:"👔",p:30,t:"Two-piece · tailored",s:"navy-suit",x:"Sharp navy two-piece for interviews, meetings and events."},
+  {id:3,d:"suits",n:"Charcoal Three-Piece",i:"🧥",p:40,t:"Waistcoat included",s:"charcoal-three-piece",x:"Refined three-piece with matching waistcoat."},
+  {id:4,d:"wedding",n:"Groom Ivory Sherwani",i:"👑",p:80,t:"Embroidered · sizes S-XXL",s:"ivory-sherwani",x:"Hand-finished ivory sherwani with detailed embroidery."},
+  {id:5,d:"wedding",n:"Bridal Gown Collection",i:"👰",p:120,t:"A-line · mermaid · ballgown",s:"bridal-gowns",x:"Designer bridal gowns with fitting support."},
+  {id:6,d:"wedding",n:"Groomsmen Suit Set",i:"🫅",p:35,t:"Bulk rate · matching sets",s:"groomsmen-set",x:"Coordinated suits for the whole wedding party."},
+  {id:7,d:"costumes",n:"Royal Medieval Costume",i:"🏰",p:55,t:"Cape · crown · tunic",s:"medieval",x:"Full medieval royal outfit for plays and festivals."},
+  {id:8,d:"costumes",n:"Superhero Series",i:"🦸",p:25,t:"Kids and adult sizes",s:"superhero",x:"Popular hero outfits with masks and capes."},
+  {id:9,d:"costumes",n:"Stage and Dance Wear",i:"💃",p:38,t:"Sequins · performance grade",s:"stage-wear",x:"Bright performance outfits for shows and competitions."},
+  {id:10,d:"party",n:"Vintage Gatsby Set",i:"🥂",p:42,t:"1920s theme · flapper dress",s:"gatsby",x:"Roaring twenties looks for themed parties."},
+  {id:11,d:"party",n:"Halloween Horror Pack",i:"🧛",p:28,t:"Vampire · witch · zombie",s:"halloween",x:"Spooky outfits with makeup-friendly accessories."},
+  {id:12,d:"accessories",n:"Bow Ties and Cufflinks",i:"🎀",p:8,t:"Add-on · multiple colours",s:"bowties",x:"Finishing touches to complete any suit."},
+  {id:13,d:"accessories",n:"Hats and Headgear",i:"🎩",p:10,t:"Top hats · crowns · fedoras",s:"hats",x:"Statement headwear for every theme."}
+];
+const url = s => BASE + "/" + s;
+const state = {cat:"all", q:"", cart:{}, days:1, picks:{}};
+const $ = id => document.getElementById(id);
+
+function renderChips(){
+  const all = [{id:"all",name:"All domains",icon:"◎"}].concat(DOMAINS);
+  $("chips").innerHTML = all.map(c =>
+    `<button class="chip mono ${state.cat===c.id?"on":""}" data-c="${c.id}">${c.icon} ${c.name}</button>`).join("");
+}
+function renderList(){
+  const q = state.q.toLowerCase();
+  let html = "", shown = 0;
+  DOMAINS.forEach(d => {
+    if(state.cat!=="all" && state.cat!==d.id) return;
+    const its = ITEMS.filter(i => i.d===d.id && (i.n+i.t+i.x).toLowerCase().includes(q));
+    if(!its.length) return;
+    shown += its.length;
+    html += `<div class="sec mono"><a href="${url(d.id)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">${d.icon} ${d.name}</a></div><div class="grid">` +
+    its.map(i => {
+      const n = state.picks[i.id] || 1;
+      return `<article class="card">
+        <div class="top">
+          <a class="icon" href="${url(i.s)}" target="_blank" rel="noopener" title="Open ${i.n} on REGALUX" aria-label="Open ${i.n} on REGALUX">${i.i}</a>
+          <div><h3><a href="${url(i.s)}" target="_blank" rel="noopener">${i.n}</a></h3><div class="meta mono">${i.t}</div></div>
+        </div>
+        <p class="desc">${i.x}</p>
+        <div class="row"><div class="price mono">$${i.p}<small> /day</small></div>
+          <div class="qty"><button data-m="${i.id}" aria-label="Decrease">−</button><span class="mono">${n}</span><button data-p="${i.id}" aria-label="Increase">+</button></div></div>
+        <button class="add" data-a="${i.id}">Add to cart</button>
+        <a class="visit mono" href="${url(i.s)}" target="_blank" rel="noopener">open on regalux ↗</a>
+      </article>`;
+    }).join("") + `</div>`;
+  });
+  $("list").innerHTML = html || `<div class="empty mono">no results found</div>`;
+  $("sItems").textContent = ITEMS.length;
+  $("sDomains").textContent = DOMAINS.length;
+}
+function units(){return Object.values(state.cart).reduce((a,b)=>a+b,0)}
+function renderCart(){
+  const ids = Object.keys(state.cart);
+  $("items").innerHTML = ids.length ? ids.map(id => {
+    const i = ITEMS.find(x => x.id==id), n = state.cart[id];
+    return `<div class="it"><span class="ic">${i.i}</span>
+      <div class="nm">${i.n}<small class="mono">$${i.p}/day × ${n}</small></div>
+      <div class="qty"><button data-cm="${id}" aria-label="Decrease">−</button><span class="mono">${n}</span><button data-cp="${id}" aria-label="Increase">+</button></div></div>`;
+  }).join("") : `<div class="empty mono">cart is empty</div>`;
+  const u = units();
+  const total = ids.reduce((a,id) => a + ITEMS.find(x => x.id==id).p * state.cart[id], 0) * state.days;
+  $("count").textContent = u; $("tu").textContent = u; $("sCart").textContent = u;
+  $("tt").textContent = "$" + total; $("days").textContent = state.days;
+}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("on"),2200)}
+function cartOpen(o){$("cart").classList.toggle("on",o);$("ov").classList.toggle("on",o)}
+
+$("chips").onclick = e => {const c=e.target.closest("[data-c]"); if(c){state.cat=c.dataset.c;renderChips();renderList()}};
+$("q").oninput = e => {state.q = e.target.value; renderList()};
+$("list").onclick = e => {
+  const b = e.target.closest("button"); if(!b) return;
+  const d = b.dataset;
+  if(d.p){state.picks[d.p]=Math.min(20,(state.picks[d.p]||1)+1);renderList()}
+  else if(d.m){state.picks[d.m]=Math.max(1,(state.picks[d.m]||1)-1);renderList()}
+  else if(d.a){
+    const n = state.picks[d.a]||1;
+    state.cart[d.a] = (state.cart[d.a]||0) + n;
+    state.picks[d.a] = 1;
+    renderList(); renderCart();
+    toast("Added " + n + " × " + ITEMS.find(x=>x.id==d.a).n);
+  }
+};
+$("items").onclick = e => {
+  const b = e.target.closest("button"); if(!b) return;
+  const d = b.dataset;
+  if(d.cp) state.cart[d.cp]++;
+  if(d.cm){ if(--state.cart[d.cm] <= 0) delete state.cart[d.cm]; }
+  renderCart();
+};
+$("dp").onclick = () => {state.days = Math.min(30,state.days+1); renderCart()};
+$("dm").onclick = () => {state.days = Math.max(1,state.days-1); renderCart()};
+$("openCart").onclick = () => cartOpen(true);
+$("closeCart").onclick = () => cartOpen(false);
+$("ov").onclick = () => cartOpen(false);
+$("home").onclick = e => {e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"})};
+$("dt").min = new Date().toISOString().slice(0,10);
+$("book").onclick = () => {
+  if(!units()) return toast("Your cart is empty");
+  if(!$("dt").value) return toast("Please choose an event date");
+  toast("Booking confirmed for " + $("dt").value + " (" + units() + " units)");
+  state.cart = {}; renderCart(); cartOpen(false);
+};
+renderChips(); renderList(); renderCart();
+</script>
+</body>
+</html>
